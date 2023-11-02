@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb+srv://duratex:<password>@duratex-3d.a7zm8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const connectionString = 'mongodb+srv://proyectomasuno:<password>@proyectomasuno.0xy2fxm.mongodb.net/?retryWrites=true&w=majority';
 
-mongoose.connect(connectionString, { useNewUrlParser: true, user: 'duratex', pass:'1nf0s3g.00' }).catch((e) => {
+mongoose.connect(connectionString, { useNewUrlParser: true, user: 'proyectomasuno', pass:'NY3RaYKZdb8CA09O' }).catch((e) => {
   console.error('Connection error', e.message);
 });
 

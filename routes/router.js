@@ -9,9 +9,11 @@ const router = express.Router();
 
 router.post("/user", UserCtrl.createUser);
 router.put("/user/:uid", UserCtrl.updateUser);
+router.put("/user/:uid/profileStatus", UserCtrl.updateProfileStatus);
 router.delete("/user/:uid", UserCtrl.deleteUser);
 router.get("/user/:uid", UserCtrl.getUserByUid);
 router.get("/users", UserCtrl.getUsers);
+router.get("/advertisers", UserCtrl.getAdvertisers);
 
 router.post("/project", ProjectCtrl.createProject);
 router.put("/project/:id", ProjectCtrl.updateProject);

@@ -1,6 +1,7 @@
 const express = require("express");
 
 const UserCtrl = require("../controllers/user-ctrl");
+const ScheduleCtrl = require("../controllers/schedule-ctrl");
 const ProjectCtrl = require("../controllers/project-ctrl");
 const EventCtrl = require("../controllers/event-ctrl");
 const KollacodeEventCtrl = require("../controllers/kollacode_event-ctrl");
@@ -14,6 +15,9 @@ router.delete("/user/:uid", UserCtrl.deleteUser);
 router.get("/user/:uid", UserCtrl.getUserByUid);
 router.get("/users", UserCtrl.getUsers);
 router.get("/advertisers", UserCtrl.getAdvertisers);
+
+router.post("/schedule", ScheduleCtrl.createSchedule);
+router.get("/schedules", ScheduleCtrl.getSchedules);
 
 router.post("/project", ProjectCtrl.createProject);
 router.put("/project/:id", ProjectCtrl.updateProject);

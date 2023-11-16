@@ -49,7 +49,45 @@ getSchedules = async (req, res) => {
   }).catch((err) => console.log(err));
 };
 
+const modifyStatusPayment = async (req, res) => {
+  try {
+    const { id } = req.params; // Usa req.params.id en lugar de req.body._id
+    const { statusPayment } = req.body;
+
+    if (!id || !statusPayment) {
+      return res.status(400).json({
+        success: false,
+        error: "You must provide both 'id' and 'statusPayment'",
+      });
+    }
+
+    const schedule = await Schedule.findById(id);
+
+    if (!schedule) {
+      return res.status(404).json({
+        success: false,
+        error: "Schedule not found",
+      });
+    }
+
+    schedule.schedule.statusPayment = statusPayment;
+    await schedule.save().then(() => {
+      return res.status(200).json({
+        success: true,
+        data: schedule,
+        message: "Schedule date modified successfully",
+      });
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   getSchedules,
   createSchedule,
+  modifyStatusPayment,
 };

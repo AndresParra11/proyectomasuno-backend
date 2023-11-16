@@ -18,6 +18,7 @@ router.get("/advertisers", UserCtrl.getAdvertisers);
 
 router.post("/schedule", ScheduleCtrl.createSchedule);
 router.get("/schedules", ScheduleCtrl.getSchedules);
+router.put("/schedule/:id/modifyStatusPayment", ScheduleCtrl.modifyStatusPayment);
 
 router.post("/project", ProjectCtrl.createProject);
 router.put("/project/:id", ProjectCtrl.updateProject);

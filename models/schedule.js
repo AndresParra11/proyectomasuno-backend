@@ -12,7 +12,11 @@ const Schedule = new Schema(
       required: true,
     },
     schedule: {
-      type: Object,
+      type: {
+        date: { type: String, required: true },
+        time: { type: String, required: true },
+        statusPayment: { type: String, required: true },
+      },
       required: true,
     },
   },

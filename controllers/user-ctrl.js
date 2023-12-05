@@ -50,18 +50,17 @@ updateUser = async (req, res) => {
         message: "User not found!",
       });
     }
-    user.uid = body.uid;
-    user.email = body.email;
     user.name = body.name;
     user.lastname = body.lastname;
+    user.email = body.email;
+    user.uid = body.uid;
     user.userType = body.userType;
     user.typeID = body.typeID;
     user.identificationNumber = body.identificationNumber;
     user.dateOfBirth = body.dateOfBirth;
     user.cellphone = body.cellphone;
-    user.address = body.address;
     user.city = body.city;
-
+    user.address = body.address;
     user.dateOfExpedition = body.dateOfExpedition;
     user.nameContactEmergency = body.nameContactEmergency;
     user.kinship = body.kinship;
@@ -80,78 +79,28 @@ updateUser = async (req, res) => {
     user.buttType = body.buttType;
     user.buttSize = body.buttSize;
     user.modalityJob = body.modalityJob;
-    user.zoneJob = body.zoneJob;
+    user.atHome = body.atHome;
     user.extraPrice = body.extraPrice;
+    user.zonesJob = body.zonesJob;
     user.otherZoneJob = body.otherZoneJob;
     user.halfHourPrice = body.halfHourPrice;
     user.oneHourPrice = body.oneHourPrice;
     user.twoHourPrice = body.twoHourPrice;
     user.allDayPrice = body.allDayPrice;
-    user.valueVaginalCondon = body.valueVaginalCondon;
-    user.valueVaginalSinCondon = body.valueVaginalSinCondon;
-    user.valueAnalCondon = body.valueAnalCondon;
-    user.valueAnalSinCondon = body.valueAnalSinCondon;
-    user.valueOralCondon = body.valueOralCondon;
-    user.valueOralSinCondon = body.valueOralSinCondon;
-    user.valueKisses = body.valueKisses;
-    user.valueTouchBreast = body.valueTouchBreast;
-    user.valueTouchButtocks = body.valueTouchButtocks;
-    user.valueMasturbation = body.valueMasturbation;
-    user.valueTouchVagina = body.valueTouchVagina;
-    user.valueInsertFingersVagina = body.valueInsertFingersVagina;
-    user.valueInsertToysOrObjectsVagina = body.valueInsertToysOrObjectsVagina;
-    user.valueReceivingSexoOral = body.valueReceivingSexoOral;
+    user.extrasServices = body.extrasServices;
     user.lingerie = body.lingerie;
     user.valueLingerie = body.valueLingerie;
     user.others = body.others;
     user.valueOthers = body.valueOthers;
-    user.valueBasicPhotoPack = body.valueBasicPhotoPack;
-    user.valuePremiumPhotoPack = body.valuePremiumPhotoPack;
-    user.valueVideoPack = body.valueVideoPack;
-    user.valuePhotoAndVideoPack = body.valuePhotoAndVideoPack;
+    user.profileType = body.profileType;
     user.descriptionAdvertiser = body.descriptionAdvertiser;
     user.paymentType = body.paymentType;
     user.numberAccount = body.numberAccount;
+    user.confirmNumberAccount = body.confirmNumberAccount;
     user.experienceType = body.experienceType;
-    user.images = body.images;
-    user.vaginalCondon = body.vaginalCondon;
-    user.vaginalSinCondon = body.vaginalSinCondon;
-    user.analCondon = body.analCondon;
-    user.analSinCondon = body.analSinCondon;
-    user.oralCondon = body.oralCondon;
-    user.oralSinCondon = body.oralSinCondon;
-    user.kisses = body.kisses;
-    user.touchBreast = body.touchBreast;
-    user.touchButtocks = body.touchButtocks;
-    user.masturbation = body.masturbation;
-    user.touchVagina = body.touchVagina;
-    user.insertFingersVagina = body.insertFingersVagina;
-    user.insertToysOrObjectsVagina = body.insertToysOrObjectsVagina;
-    user.receivingSexoOral = body.receivingSexoOral;
-    user.includeVaginalCondon = body.includeVaginalCondon;
-    user.includeVaginalSinCondon = body.includeVaginalSinCondon;
-    user.includeAnalCondon = body.includeAnalCondon;
-    user.includeAnalSinCondon = body.includeAnalSinCondon;
-    user.includeOralCondon = body.includeOralCondon;
-    user.includeOralSinCondon = body.includeOralSinCondon;
-    user.includeTouchVagina = body.includeTouchVagina;
-    user.includeTouchBreast = body.includeTouchBreast;
-    user.includeTouchButtocks = body.includeTouchButtocks;
-    user.includeKisses = body.includeKisses;
-    user.includeMasturbation = body.includeMasturbation;
-    user.includeInsertFingersVagina = body.includeInsertFingersVagina;
-    user.includeInsertToysOrObjectsVagina =
-      body.includeInsertToysOrObjectsVagina;
-    user.includeReceivingSexoOral = body.includeReceivingSexoOral;
-    user.basicPhotoPack = body.basicPhotoPack;
-    user.includeBasicPhotoPack = body.includeBasicPhotoPack;
-    user.premiumPhotoPack = body.premiumPhotoPack;
-    user.includePremiumPhotoPack = body.includePremiumPhotoPack;
-    user.videoPack = body.videoPack;
-    user.includeVideoPack = body.includeVideoPack;
-    user.photoAndVideoPack = body.photoAndVideoPack;
-    user.includePhotoAndVideoPack = body.includePhotoAndVideoPack;
     user.profileStatus = body.profileStatus;
+    user.images = body.images;
+    user.selectedData = body.selectedData;
 
     user
       .save()
@@ -190,6 +139,9 @@ updateProfileStatus = async (req, res) => {
     }
 
     user.profileStatus = profileStatus;
+    if (profileStatus === "aprobada") {
+      user.userType = "advertiser";
+    }
     await user.save();
 
     return res.status(200).json({
